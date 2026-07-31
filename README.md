@@ -5,12 +5,13 @@ An ultra-fast, low-latency audio spectrum analyzer written with Gemini. Built in
 - **Space:** Swap mode
 - **Arrow Up/Down:** Change waterfall speed
 - **Toggle FullScreen mode:** F or F11 
-
-
-<img width="1917" height="1054" alt="image" src="https://github.com/user-attachments/assets/7526eccd-d2c7-46e7-9599-ae9c36095e13" />
-<img width="1919" height="1053" alt="image" src="https://github.com/user-attachments/assets/42263742-3f12-4b5e-b5dc-4b56cecf2016" />
-
-159hz sin wave 
+- **
+- **
+<img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/f1bcc553-ff75-4c89-8fa6-8dbaa97ce0c5" />
+<img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/fc388191-be58-4d2a-81ee-4d0a72862e00" />
+- **
+- **
+###159hz sin wave 
 <img width="1917" height="1050" alt="image" src="https://github.com/user-attachments/assets/2d1af3cb-93fc-4122-85bf-ff70dd11174c" />
 <img width="1919" height="1052" alt="image" src="https://github.com/user-attachments/assets/fa36208c-f8ed-490b-aa99-30e209c7019e" />
 
