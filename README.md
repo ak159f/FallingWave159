@@ -4,6 +4,7 @@ An ultra-fast, low-latency audio spectrum analyzer written with Gemini. Built in
 ### Controls
 - **Space:** Swap mode
 - **Arrow Up/Down:** Change waterfall speed
+- **Toggle FullScreen mode:** F or F11 
 
 
 <img width="1917" height="1054" alt="image" src="https://github.com/user-attachments/assets/7526eccd-d2c7-46e7-9599-ae9c36095e13" />
