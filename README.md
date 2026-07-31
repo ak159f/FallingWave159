@@ -1,9 +1,9 @@
 # FallingWave159
 An ultra-fast, zero-latency audio spectrum analyzer written with Gemini. Built in C++, Raylib, and Miniaudio. Features live hot-swapping between high-res mastering (asymmetric windows) and high-speed breakcore transient analysis (zero-padding), all powered by WASAPI loopback capture.
 
-Control
-Space : swap mode
-arrow up/down : change waterfall speed
+### Controls
+- **Space:** Swap mode
+- **Arrow Up/Down:** Change waterfall speed
 
 
 <img width="1917" height="1054" alt="image" src="https://github.com/user-attachments/assets/7526eccd-d2c7-46e7-9599-ae9c36095e13" />
