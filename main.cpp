@@ -199,11 +199,18 @@ public:
         
         MathEngine::ComputeInPlaceFFT(fftBuffer);
         
+        // --- NEW FIX: Dynamic Normalization ---
+        // High-Res mode uses all 16384 samples. 
+        // High-Speed mode only uses 4096 samples and pads the rest with zeros (which waters down the math by 75%, or -12dB).
+        float activeSamples = (currentMode == 0) ? (float)Config::FFTSize : (float)Config::CaptureSize;
+        
         for (int i = 0; i < Config::FFTSize / 2; ++i) {
-            // Restore normalization for the full high-resolution buffer
             float re = fftBuffer[i].real();
             float im = fftBuffer[i].imag();
-            rawMagnitudes[i] = std::sqrt(re * re + im * im) / (Config::FFTSize * 0.5f);
+            
+            // 1. Normalize based on active samples to fix the -12dB drop
+            // 2. Multiply by 2.0f to compensate for the 50% amplitude loss caused by the windowing function
+            rawMagnitudes[i] = (std::sqrt(re * re + im * im) / (activeSamples * 0.5f)) * 2.0f;
         }
     }
 
