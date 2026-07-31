@@ -43,8 +43,8 @@ namespace Config {
     const float MinFreq = 20.0f;
     const float MaxFreq = 20000.0f;
     
-    // Exact dB scale from the screenshot (-125 to 0)
-    const float MinDB = -125.0f; 
+    // Exact dB scale from the screenshot (-130 to 0) to match the new colored legend
+    const float MinDB = -130.0f; 
     const float MaxDB = 0.0f; 
 }
 
@@ -313,7 +313,7 @@ public:
         Color gridColor = (Color){45, 45, 45, 255};
         Color textColor = (Color){150, 150, 150, 255};
 
-        // Horizontal Grid (dB Levels) matching the image exactly
+        // Horizontal Grid (dB Levels on the top graph)
         int dbSteps[] = {0, -25, -50, -75, -100, -125};
         for(int db : dbSteps) {
             float normalizedY = (db - Config::MinDB) / (Config::MaxDB - Config::MinDB);
@@ -326,13 +326,19 @@ public:
             DrawText(text, leftMargin - textW - 5, y - 10, 20, textColor);
         }
 
-        for(int db = 0; db >= -125; db -= 10) { 
+        // --- NEW COLORED WATERFALL dB LEGEND (-5 step) ---
+        for(int db = 0; db >= -130; db -= 5) { 
             float normalizedY = (db - Config::MinDB) / (Config::MaxDB - Config::MinDB);
             float y = (topMargin + graphH + textGap) + (1.0f - normalizedY) * waterH;
             
             const char* text = TextFormat("%d", db);
             int textW = MeasureText(text, 18);
-            DrawText(text, leftMargin - textW - 5, y - 9, 18, (Color){200, 200, 200, 150});
+            
+            // Generate the exact color for this dB level!
+            float intensity = std::clamp(normalizedY, 0.0f, 1.0f);
+            Color dbColor = GetWaterfallColor(intensity);
+            
+            DrawText(text, leftMargin - textW - 5, y - 9, 18, dbColor);
         }
 
         // Vertical Grid (Frequencies)
@@ -407,7 +413,6 @@ int main() {
     
     InitWindow(Config::WindowWidth, Config::WindowHeight, "FallingWave 159");
     
-    // Grab the icon embedded by the build script
     HWND hwnd = (HWND)GetWindowHandle();
     HICON hIcon = LoadIcon(GetModuleHandle(NULL), "IDI_ICON1");
     if (hIcon) {
@@ -433,33 +438,36 @@ int main() {
     int waterfallSpeed = 2; 
     bool isFullscreen = false;
 
-    // WindowShouldClose() handles both the 'X' button and the 'ESC' key!
+    // WindowShouldClose() handles both the 'X' button and the 'ESC' key
     while (!WindowShouldClose()) {
         
-        // Toggle Fullscreen (F11 or F only)
+        // --- NEW BORDERLESS FULLSCREEN TOGGLE (Fixes Alt-Tab Bug) ---
         if (IsKeyPressed(KEY_F11) || IsKeyPressed(KEY_F)) {
+            int monitor = GetCurrentMonitor();
             if (!isFullscreen) {
-                // Going Fullscreen: Snap to the exact monitor size
-                int monitor = GetCurrentMonitor();
+                // Remove window borders and stretch to perfectly fit the screen
+                SetWindowState(FLAG_WINDOW_UNDECORATED);
                 SetWindowSize(GetMonitorWidth(monitor), GetMonitorHeight(monitor));
-                ToggleFullscreen();
+                
+                // Snap it perfectly to the top-left of the current monitor
+                Vector2 pos = GetMonitorPosition(monitor);
+                SetWindowPosition(pos.x, pos.y);
                 isFullscreen = true;
             } else {
-                // Exiting Fullscreen: Toggle back and force the original size
-                ToggleFullscreen();
+                // Restore the standard window borders
+                ClearWindowState(FLAG_WINDOW_UNDECORATED);
                 SetWindowSize(Config::WindowWidth, Config::WindowHeight);
                 
-                // Re-center the window on the screen nicely
-                int monitor = GetCurrentMonitor();
+                // Re-center the window mathematically on the monitor
+                Vector2 pos = GetMonitorPosition(monitor);
                 SetWindowPosition(
-                    (GetMonitorWidth(monitor) - Config::WindowWidth) / 2, 
-                    (GetMonitorHeight(monitor) - Config::WindowHeight) / 2
+                    pos.x + (GetMonitorWidth(monitor) - Config::WindowWidth) / 2, 
+                    pos.y + (GetMonitorHeight(monitor) - Config::WindowHeight) / 2
                 );
                 isFullscreen = false;
             }
         }
         
-        // Other Controls
         if (IsKeyPressed(KEY_SPACE)) {
             currentMode = (currentMode == 0) ? 1 : 0;
         }
