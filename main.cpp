@@ -273,11 +273,12 @@ public:
         int h = GetScreenHeight();
         
         // --- NEW UI LAYOUT CONSTANTS ---
+        int topMargin = 25;   // Prevent 0dB text from hitting the ceiling
         int leftMargin = 65;  // Dedicated space for dB text
         int textGap = 25;     // Dedicated space for Hz text
         
         float graphH = h * 0.35f;
-        float waterH = h - graphH - textGap;
+        float waterH = h - (topMargin + graphH + textGap);
 
         // 1. Shift Waterfall DOWNWARDS with variable speed
         int shiftRows = waterfallSpeed;
@@ -301,12 +302,12 @@ public:
 
         // 2. Draw Waterfall in the bottom section, shifted by margins
         Rectangle src = { 0.0f, 0.0f, (float)Config::DotCount, (float)waterfallHeight };
-        Rectangle dest = { (float)leftMargin, graphH + textGap, (float)(w - leftMargin), waterH };
+        Rectangle dest = { (float)leftMargin, topMargin + graphH + textGap, (float)(w - leftMargin), waterH };
         DrawTexturePro(waterfallTex, src, dest, (Vector2){0, 0}, 0.0f, WHITE);
 
         // --- DRAW DEDICATED UI PANELS ---
         DrawRectangle(0, 0, leftMargin, h, (Color){8, 8, 8, 255}); // Left Column
-        DrawRectangle(leftMargin, graphH, w - leftMargin, textGap, (Color){8, 8, 8, 255}); // Middle Row
+        DrawRectangle(leftMargin, topMargin + graphH, w - leftMargin, textGap, (Color){8, 8, 8, 255}); // Middle Row
 
         // 3. Draw Grid Lines
         Color gridColor = (Color){45, 45, 45, 255};
@@ -316,7 +317,7 @@ public:
         int dbSteps[] = {0, -25, -50, -75, -100, -125};
         for(int db : dbSteps) {
             float normalizedY = (db - Config::MinDB) / (Config::MaxDB - Config::MinDB);
-            float y = graphH - (normalizedY * graphH);
+            float y = topMargin + (graphH - (normalizedY * graphH));
             
             DrawLine(leftMargin, y, w, y, gridColor);
             
@@ -327,7 +328,7 @@ public:
 
         for(int db = 0; db >= -125; db -= 10) { 
             float normalizedY = (db - Config::MinDB) / (Config::MaxDB - Config::MinDB);
-            float y = (graphH + textGap) + (1.0f - normalizedY) * waterH;
+            float y = (topMargin + graphH + textGap) + (1.0f - normalizedY) * waterH;
             
             const char* text = TextFormat("%d", db);
             int textW = MeasureText(text, 18);
@@ -343,8 +344,8 @@ public:
             float t = (std::log10((float)f) - logMin) / (logMax - logMin);
             float x = leftMargin + t * (w - leftMargin);
             
-            DrawLine(x, 0, x, graphH, gridColor);
-            DrawLine(x, graphH + textGap, x, h, (Color){255, 255, 255, 15});
+            DrawLine(x, topMargin, x, topMargin + graphH, gridColor);
+            DrawLine(x, topMargin + graphH + textGap, x, h, (Color){255, 255, 255, 15});
             
             const char* fText = TextFormat("%d", f);
             int textW = MeasureText(fText, 20); 
@@ -356,7 +357,7 @@ public:
                 textX = w - textW - 5;
             }
             
-            DrawText(fText, textX, graphH + 3, 20, textColor);
+            DrawText(fText, textX, topMargin + graphH + 3, 20, textColor);
         }
 
         // 4. Draw Solid Dynamic Bars
@@ -364,7 +365,7 @@ public:
         for (int i = 0; i < Config::DotCount; ++i) {
             float x = leftMargin + ((float)i / Config::DotCount) * (w - leftMargin);
             float height = yHeights[i] * graphH;
-            float y = graphH - height;
+            float y = topMargin + (graphH - height);
             
             Color barColor = GetWaterfallColor(yHeights[i]);
             DrawRectangle(x, y, std::max(1.0f, barWidth - 1.0f), std::max(1.0f, height), barColor);
@@ -379,23 +380,23 @@ public:
             DrawLine(mx, 0, mx, h, crossColor);
             
             float hoverFreq = Config::MinFreq * std::pow(10.0f, ((mx - leftMargin) / (w - leftMargin)) * (logMax - logMin));
-            DrawText(TextFormat("%.0f Hz", hoverFreq), w - 200, 20, 30, crossColor);
+            DrawText(TextFormat("%.0f Hz", hoverFreq), w - 200, 20 + topMargin, 30, crossColor);
             
-            if (my < graphH) {
+            if (my >= topMargin && my < topMargin + graphH) {
                 DrawLine(leftMargin, my, w, my, crossColor);
-                float hoverDB = Config::MinDB + (1.0f - (my / graphH)) * (Config::MaxDB - Config::MinDB);
-                DrawText(TextFormat("%.0f dB", hoverDB), w - 200, 60, 30, crossColor);
+                float hoverDB = Config::MinDB + (1.0f - ((my - topMargin) / graphH)) * (Config::MaxDB - Config::MinDB);
+                DrawText(TextFormat("%.0f dB", hoverDB), w - 200, 60 + topMargin, 30, crossColor);
             }
         }
 
         // Draw current mode and speed UI
         if (currentMode == 0) {
-            DrawText("MODE: HI-RES (SPACE to swap)", leftMargin + 10, 15, 20, (Color){200, 200, 200, 200});
+            DrawText("MODE: HI-RES (SPACE to swap)", leftMargin + 10, topMargin, 20, (Color){200, 200, 200, 200});
         } else {
-            DrawText("MODE: HI-SPEED (SPACE to swap)", leftMargin + 10, 15, 20, (Color){0, 255, 200, 200}); 
+            DrawText("MODE: HI-SPEED (SPACE to swap)", leftMargin + 10, topMargin, 20, (Color){0, 255, 200, 200}); 
         }
         
-        DrawText(TextFormat("SPEED: %d (UP/DOWN to change)", waterfallSpeed), leftMargin + 10, 40, 20, (Color){255, 200, 0, 200});
+        DrawText(TextFormat("SPEED: %d (UP/DOWN to change)", waterfallSpeed), leftMargin + 10, topMargin + 25, 20, (Color){255, 200, 0, 200});
 
         EndDrawing();
     }
@@ -404,14 +405,14 @@ public:
 int main() {
     SetConfigFlags(FLAG_MSAA_4X_HINT | FLAG_WINDOW_RESIZABLE);
     
-    // UPDATE: Set the official name of the app
     InitWindow(Config::WindowWidth, Config::WindowHeight, "FallingWave 159");
     
-    // UPDATE: Load your custom 159Hz icon file
-    Image icon = LoadImage("159hz.ico");
-    if (icon.data != NULL) {
-        SetWindowIcon(icon);
-        UnloadImage(icon); // We can safely unload it from CPU memory once the OS takes it
+    // Grab the icon embedded by the build script
+    HWND hwnd = (HWND)GetWindowHandle();
+    HICON hIcon = LoadIcon(GetModuleHandle(NULL), "IDI_ICON1");
+    if (hIcon) {
+        SendMessage(hwnd, WM_SETICON, ICON_SMALL, (LPARAM)hIcon);
+        SendMessage(hwnd, WM_SETICON, ICON_BIG, (LPARAM)hIcon);
     }
 
     SetTargetFPS(60);
@@ -430,8 +431,35 @@ int main() {
 
     int currentMode = 0; 
     int waterfallSpeed = 2; 
+    bool isFullscreen = false;
 
+    // WindowShouldClose() handles both the 'X' button and the 'ESC' key!
     while (!WindowShouldClose()) {
+        
+        // Toggle Fullscreen (F11 or F only)
+        if (IsKeyPressed(KEY_F11) || IsKeyPressed(KEY_F)) {
+            if (!isFullscreen) {
+                // Going Fullscreen: Snap to the exact monitor size
+                int monitor = GetCurrentMonitor();
+                SetWindowSize(GetMonitorWidth(monitor), GetMonitorHeight(monitor));
+                ToggleFullscreen();
+                isFullscreen = true;
+            } else {
+                // Exiting Fullscreen: Toggle back and force the original size
+                ToggleFullscreen();
+                SetWindowSize(Config::WindowWidth, Config::WindowHeight);
+                
+                // Re-center the window on the screen nicely
+                int monitor = GetCurrentMonitor();
+                SetWindowPosition(
+                    (GetMonitorWidth(monitor) - Config::WindowWidth) / 2, 
+                    (GetMonitorHeight(monitor) - Config::WindowHeight) / 2
+                );
+                isFullscreen = false;
+            }
+        }
+        
+        // Other Controls
         if (IsKeyPressed(KEY_SPACE)) {
             currentMode = (currentMode == 0) ? 1 : 0;
         }
