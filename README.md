@@ -40,7 +40,7 @@ Built in C++ with Raylib and Miniaudio, this tool captures desktop audio directl
 
 
 
-### If you want to compile the project yourself, it is incredibly easy:
+### If you want to compile the project yourself
 
 Ensure you have g++ (MinGW) installed on Windows.
 
