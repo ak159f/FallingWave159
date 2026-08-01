@@ -27,7 +27,7 @@ Built in C++ with Raylib and Miniaudio, this tool captures desktop audio directl
 
 - TAB : Toggle UI text visibility (Crosshair remains active)
 
-- F or F11 : Toggle Borderless Fullscreen (Alt-Tab friendly!)
+- F or F11 : Toggle Borderless Fullscreen
 
 - Mouse Hover : Display specific Hz and dB under the cursor
 
