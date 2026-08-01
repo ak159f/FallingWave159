@@ -62,9 +62,12 @@ The script will automatically link everything statically, embed the 159hz.ico ic
 
 Built with C++, Raylib, and Miniaudio.
 
-### winlib guide
+### for who wanna build it your seld follow this guide
+
 https://winlibs.com/
-- chose lastest UCRT 64 bit
+
+chose lastest UCRT 64 bit
+
 ### what to download
 
 <img width="1120" height="780" alt="image" src="https://github.com/user-attachments/assets/be7e16f0-8ca4-4b2c-b146-129e3b3742e6" />
