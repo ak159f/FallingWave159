@@ -61,3 +61,11 @@ Double-click the included build.cmd file. (or use your own tools)
 The script will automatically link everything statically, embed the 159hz.ico icon, and output a fully portable FallingWave159.exe.
 
 Built with C++, Raylib, and Miniaudio.
+
+### winlib guide
+https://winlibs.com/
+- chose lastest UCRT 64 bit
+#### example
+<img width="1120" height="780" alt="image" src="https://github.com/user-attachments/assets/be7e16f0-8ca4-4b2c-b146-129e3b3742e6" />
+
+
