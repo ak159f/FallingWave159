@@ -19,7 +19,7 @@ Built in C++ with Raylib and Miniaudio, this tool captures desktop audio directl
 
 # Controls
 
-- Numbers : Swap between the 4 Engine Modes
+- Numbers : Swap Engine Modes
 
 - UP / DOWN : Increase or decrease the Waterfall scrolling speed
 
