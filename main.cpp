@@ -358,7 +358,7 @@ public:
             DrawLine(x, topMargin, x, topMargin + graphH, gridColor);
             DrawLine(x, topMargin + graphH + textGap, x, h, (Color){255, 255, 255, 15});
             
-            const char* fText = TextFormat("%d", f);
+            const char* fText = (f >= 1000) ? TextFormat("%dk", f / 1000) : TextFormat("%d", f);
             int textW = MeasureText(fText, freqFontSize); 
             
             float textX = x - (textW / 2.0f);
