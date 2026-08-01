@@ -65,7 +65,26 @@ Built with C++, Raylib, and Miniaudio.
 ### winlib guide
 https://winlibs.com/
 - chose lastest UCRT 64 bit
-#### example
+### what to download
+
 <img width="1120" height="780" alt="image" src="https://github.com/user-attachments/assets/be7e16f0-8ca4-4b2c-b146-129e3b3742e6" />
 
+### how to install 
 
+- follow this order
+- 
+<img width="1365" height="685" alt="image" src="https://github.com/user-attachments/assets/021589b1-e605-45be-84d4-2a18b3622c9b" />
+
+- open Environment Variables
+- 
+<img width="763" height="425" alt="image" src="https://github.com/user-attachments/assets/29ff9094-3fcb-4f5e-a9d4-ea0bf0c1ad85" />
+
+<img width="416" height="480" alt="image" src="https://github.com/user-attachments/assets/fd13f816-4d13-41d8-8ae9-03cb1912c9a5" />
+
+<img width="618" height="582" alt="image" src="https://github.com/user-attachments/assets/de1eb22b-faba-4724-8f7d-3633a8c1b677" />
+
+<img width="516" height="496" alt="image" src="https://github.com/user-attachments/assets/9d1e5bbb-1cc0-4e20-9e75-c033150590a4" />
+
+C:\mingw64\bin
+
+then hit ok and you should able to use build.cmd now
