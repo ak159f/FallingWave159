@@ -74,7 +74,7 @@ chose lastest UCRT 64 bit
 
 ### how to install 
 
-follow this order
+after extract the file move mingw64 into drive C
 
 <img width="1365" height="685" alt="image" src="https://github.com/user-attachments/assets/021589b1-e605-45be-84d4-2a18b3622c9b" />
 
