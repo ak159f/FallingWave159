@@ -71,12 +71,12 @@ https://winlibs.com/
 
 ### how to install 
 
-- follow this order
-- 
+follow this order
+
 <img width="1365" height="685" alt="image" src="https://github.com/user-attachments/assets/021589b1-e605-45be-84d4-2a18b3622c9b" />
 
-- open Environment Variables
-- 
+open Environment Variables
+
 <img width="763" height="425" alt="image" src="https://github.com/user-attachments/assets/29ff9094-3fcb-4f5e-a9d4-ea0bf0c1ad85" />
 
 <img width="416" height="480" alt="image" src="https://github.com/user-attachments/assets/fd13f816-4d13-41d8-8ae9-03cb1912c9a5" />
