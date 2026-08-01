@@ -32,11 +32,21 @@ Built in C++ with Raylib and Miniaudio, this tool captures desktop audio directl
 - Mouse Hover : Display specific Hz and dB under the cursor
 
 
-<img width="1278" height="713" alt="image" src="https://github.com/user-attachments/assets/82455b43-390f-455c-b650-e6367cca1a94" />
-<img width="1272" height="712" alt="image" src="https://github.com/user-attachments/assets/c731cd33-de79-44cf-bc7f-af29e69e0dde" />
+<img width="1151" height="604" alt="image" src="https://github.com/user-attachments/assets/57c7bef1-d908-47de-99a0-00f52ded340d" />
+<img width="1154" height="601" alt="image" src="https://github.com/user-attachments/assets/261f8b57-7f2c-4903-961d-08cd9fb7f02c" />
 
-<img width="1392" height="746" alt="image" src="https://github.com/user-attachments/assets/b4ddce08-e619-4f1b-b3fd-b31cb3404e5c" />
-<img width="1401" height="753" alt="image" src="https://github.com/user-attachments/assets/3e950e95-7ece-42cb-a953-1530c609bd26" />
+### 159 hz 0db
+[1] NormalMode 16384
+
+<img width="1148" height="610" alt="image" src="https://github.com/user-attachments/assets/977e2871-998a-4e08-9230-45d7aeaacbaa" />
+[2] HighSpeedMode 4096
+
+<img width="1141" height="601" alt="image" src="https://github.com/user-attachments/assets/c7c9a5b0-0ff0-49a3-bec9-57f886785abb" />
+[3] NormalMode 32768
+
+<img width="1148" height="602" alt="image" src="https://github.com/user-attachments/assets/289516c0-80e7-40b8-ac0f-e9ef0b9d8436" />
+[4] HighSpeedMode 8192
+<img width="1144" height="600" alt="image" src="https://github.com/user-attachments/assets/665c1ea3-9c86-4ebb-a241-f6af28ea3f47" />
 
 
 
