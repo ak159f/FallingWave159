@@ -26,62 +26,68 @@ Built in C++ with Raylib and Miniaudio, this tool captures desktop audio directl
 
 - TAB : Settings menu
 
-- F or F11 : Toggle Borderless
+- F or F11 : Toggle Borderless mode
 
 - Mouse Hover : Display specific Hz and dB under the cursor
 
+<img width="1919" height="1041" alt="image" src="https://github.com/user-attachments/assets/32c24934-a5ac-44b4-ab17-de3b9ad58b87" />
 
-<img width="1151" height="604" alt="image" src="https://github.com/user-attachments/assets/57c7bef1-d908-47de-99a0-00f52ded340d" />
-<img width="1154" height="601" alt="image" src="https://github.com/user-attachments/assets/261f8b57-7f2c-4903-961d-08cd9fb7f02c" />
+<img width="1919" height="1039" alt="image" src="https://github.com/user-attachments/assets/fbabd7b8-d12c-4613-beb4-13bc2b383745" />
+
+<img width="1919" height="1053" alt="image" src="https://github.com/user-attachments/assets/16606a6a-72ac-4780-affd-84f1215b7b2d" />
+
+<img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/ecaffb9f-7efe-48fd-9ca2-c119ef692396" />
+
 
 ### 159 hz 0db
-[1] NormalMode 16384
 
-<img width="1148" height="610" alt="image" src="https://github.com/user-attachments/assets/977e2871-998a-4e08-9230-45d7aeaacbaa" />
-[2] HighSpeedMode 4096
+Zero-padding 65536
 
-<img width="1141" height="601" alt="image" src="https://github.com/user-attachments/assets/c7c9a5b0-0ff0-49a3-bec9-57f886785abb" />
-[3] NormalMode 32768
+<img width="1919" height="1052" alt="image" src="https://github.com/user-attachments/assets/f4f052c7-90a0-4de7-9f7d-031863e74424" />
 
-<img width="1148" height="602" alt="image" src="https://github.com/user-attachments/assets/289516c0-80e7-40b8-ac0f-e9ef0b9d8436" />
-[4] HighSpeedMode 8192
-<img width="1144" height="600" alt="image" src="https://github.com/user-attachments/assets/665c1ea3-9c86-4ebb-a241-f6af28ea3f47" />
+Long-window 65536
+
+<img width="1919" height="1055" alt="image" src="https://github.com/user-attachments/assets/760f1732-f49a-478c-bb0f-591e2a0302e2" />
 
 
 
-### If you want to compile the project yourself
+### If you want to compile the project yourself, follow these requirements
 
-Ensure you have g++ (MinGW) installed on Windows.
+- Ensure you have g++ (MinGW) installed on Windows.
 
-Ensure you have the raylib include/lib folders and miniaudio.h in your project directory.
+- Ensure you have the raylib include/lib folders and miniaudio.h in your project directory.
 
-Double-click the included build.cmd file. (or use your own tools)
+- Double-click the included build.cmd file. (or use your own tools)
 
 The script will automatically link everything statically, embed the 159hz.ico icon, and output a fully portable FallingWave159.exe.
 
 Built with C++, Raylib, and Miniaudio.
 
-### for who wanna build it yourself follow this guide
+Note : Because build errors usually depend on your specific environment, troubleshooting can vary widely. However, I have provided a guide below for the most common compiler setup issue.
 
-https://winlibs.com/
+### If you are building from source, it is assumed you are comfortable configuring your Windows environment.
 
-chose lastest UCRT 64 bit
+If you need to install MinGW, follow these steps:
 
-### what to download
+- Go to https://winlibs.com/
+
+- Choose the latest UCRT 64-bit version.
 
 <img width="1120" height="780" alt="image" src="https://github.com/user-attachments/assets/be7e16f0-8ca4-4b2c-b146-129e3b3742e6" />
 
 ### how to install 
 
-after extract the file move mingw64 into drive C
+After extracting the downloaded file, move the mingw64 folder directly into your C:\ drive.
 
 <img width="1365" height="685" alt="image" src="https://github.com/user-attachments/assets/021589b1-e605-45be-84d4-2a18b3622c9b" />
 
-open Environment Variables
+Next, you need to add it to your system path. Open Environment Variables in Windows:
 
 <img width="763" height="425" alt="image" src="https://github.com/user-attachments/assets/29ff9094-3fcb-4f5e-a9d4-ea0bf0c1ad85" />
 
 <img width="416" height="480" alt="image" src="https://github.com/user-attachments/assets/fd13f816-4d13-41d8-8ae9-03cb1912c9a5" />
+
+Add this exact path to your Path variable: C:\mingw64\bin
 
 <img width="618" height="582" alt="image" src="https://github.com/user-attachments/assets/de1eb22b-faba-4724-8f7d-3633a8c1b677" />
 
@@ -89,4 +95,4 @@ open Environment Variables
 
 C:\mingw64\bin
 
-then hit ok and you should able to use build.cmd now
+Hit OK to save your changes. You should now be able to run build.cmd successfully to compile the project.
