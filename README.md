@@ -7,7 +7,6 @@ Built in C++ with Raylib and Miniaudio, this tool captures desktop audio directl
 
 - **Zero-Latency Capture: :** Uses WASAPI loopback to analyze whatever you are currently listening to on your PC.
 
-- **Hot-Swappable Math Modes: :** Instantly switch between high-resolution mastering modes and ultra-fast transient modes (perfect for breakcore and drum & bass).
 
 - **Dynamic UI Scaling: :** Resize the window freely; fonts and margins automatically calculate precise spatial ratios to maintain a beautiful layout.
 
