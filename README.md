@@ -25,9 +25,9 @@ Built in C++ with Raylib and Miniaudio, this tool captures desktop audio directl
 
 - SPACE : Freeze/Pause the audio capture for static analysis
 
-- TAB : Toggle UI text visibility (Crosshair remains active)
+- TAB : Settings menu
 
-- F or F11 : Toggle Borderless Fullscreen
+- F or F11 : Toggle Borderless
 
 - Mouse Hover : Display specific Hz and dB under the cursor
 
